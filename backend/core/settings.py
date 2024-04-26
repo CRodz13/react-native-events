@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-#d81z$&h=@k%oplusec+9rmk6(9s3pw9gm^fi!%gl7$bom0p4*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "10.30.0.31"]
 
 
 # Application definition
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "api",
+    "events",
 ]
 
 MIDDLEWARE = [
@@ -42,7 +43,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-ROOT_URLCONF = "backend.urls"
+ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
     {
@@ -60,7 +61,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "backend.wsgi.application"
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
@@ -109,25 +110,41 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-    ),
-}
+# REST_FRAMEWORK = {
+#     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
+#     "DEFAULT_AUTHENTICATION_CLASSES": (
+#         "rest_framework_simplejwt.authentication.JWTAuthentication",
+#         "rest_framework.authentication.SessionAuthentication",
+#         "rest_framework.authentication.BasicAuthentication",
+#     ),
+# }
 
-JWT_AUTH = {
-    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=3),
-    "JWT_ALLOW_REFRESH": True,
-}
+# JWT_AUTH = {
+#     "JWT_EXPIRATION_DELTA": datetime.timedelta(days=3),
+#     "JWT_ALLOW_REFRESH": True,
+# }
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ("http://localhost:8081", "http://10.30.0.31:8081", "http://127.0.0.1:8081")
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:8081",
+    "http://10.30.0.31:8081",
+    "http://10.30.0.31:8000",
+    "http://10.0.2.2:8000",
+    "http://127.0.0.1:8081",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "exp://10.30.0.31:8081",
+    "exp://localhost:8081",
+    "https://10.30.0.31:8081",
+    "http://10.0.2.16:8000",
+    "http://10.0.2.16:8081",
+)

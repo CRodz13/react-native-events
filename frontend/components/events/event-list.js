@@ -1,22 +1,23 @@
 import { View, Tex, FlatList, Text, RefreshControl } from "react-native";
 import React from "react";
-import { DUMMY_DATA } from "../../data/dummy";
+// import { DUMMY_DATA } from "../../data/dummy";
 import EventItem from "./event-item";
 
-const EventList = () => {
+const EventList = ({ data }) => {
   const renderItem = ({ item }) => {
     return (
       <EventItem
         id={item.id}
-        title={item.title}
+        name={item.name}
         description={item.description}
+        qrCode={item.qr_code}
       />
     );
   };
   return (
     <View>
       <FlatList
-        data={DUMMY_DATA}
+        data={data}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         refreshControl={

@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const EventItem = ({ id, title, description }) => {
+const EventItem = ({ id, name, description, qrCode }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -11,7 +11,7 @@ const EventItem = ({ id, title, description }) => {
         navigation.navigate("Event", { eventId: id, title, description })
       }
     >
-      <Text>{title}</Text>
+      <Text>{name}</Text>
       <Text>{description}</Text>
     </TouchableOpacity>
   );
